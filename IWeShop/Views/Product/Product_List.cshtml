@@ -1,0 +1,102 @@
+﻿@model IEnumerable<IWeShop.Models.Product_List_Result>
+
+@{
+    ViewBag.Title = Request.QueryString["Category"];
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="wrapper">
+    <!-- .page -->
+    <div class="page">
+        <!-- .page-inner -->
+        <div class="page-inner">
+
+            <div class="page-section">
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-primary has-icon alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="alert-icon">
+                            <span class="fa fa-thumbs-up"></span>
+                        </div>
+                        @TempData["Success"]
+                    </div>
+                }
+
+                <!-- .card -->
+                <div class="card card-fluid">
+
+                    <div class="card-body">
+                        <header class="page-title-bar">
+                            <!-- title and toolbar -->
+                            <div class="d-md-flex align-items-md-start">
+                                <strong class="mr-sm-auto"> <i class="fa fa-list-alt"></i> @ViewBag.Title</strong>
+
+                                <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Product_Add","Product",new {id=ViewBag.InCategoryID, Category=Request.QueryString["Category"]})'"><i class="oi oi-plus"></i> <span class="ml-1">Add New</span></button>
+                            </div>
+                        </header>
+                        <hr />
+                        <div class="row">
+                            @foreach (var i in Model)
+                            {
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a href="@Url.Action("Product_Edit","Product",new { id=i.ProductID, Category = i.CategoryName})">
+                                                <img class="embed-responsive" src="@i.ImagePath" />
+                                            </a>
+
+                                        </div>
+                                        <span class="text-center">
+                                            <strong class="m-1">
+                                                @i.ProductName
+                                            </strong>
+                                        </span>
+                                        <hr />
+                                        <span>
+                                            <span class="card-title ml-5 float-left">Active: </span>
+                                            <label class="switcher-control switcher-control-lg mr-5 float-right">
+                                                <input type="checkbox" class="switcher-input" id="Status_@i.ProductID" @(i.IsActive == true ? "checked" : "") onchange="EnableDisable('@i.ProductID')">
+                                                <span class="switcher-indicator"></span>
+                                                <span class="switcher-label-on">ON</span>
+                                                <span class="switcher-label-off">OFF</span>
+                                            </label>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        function EnableDisable(id) {
+            var status = $("#Status_" + id).is(':checked');
+
+            if (!confirm('Are you sure you want to update?')) {
+                $("#Status_" + id).prop('checked', (status == true ? false : true));
+                return false;
+            }
+            else {
+                $.ajax({
+                    url: '/Product/Product_Mark_IsActive',
+                    type: "GET",
+                    dataType: "JSON",
+                    data: { ProductID: id, MarkAs: status },
+                    success: function (result) {
+
+                    }
+                });
+            }
+        }
+    </script>
+}

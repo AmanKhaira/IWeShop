@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> @ViewBag.Title | IWEShop </title>
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/assets/Only_A_Blue.png">
+    <link rel="shortcut icon" href="~/Content/assets/Only_A_Blue.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/vendor/open-iconic/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/%40fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" href="~/Content/assets/stylesheets/theme.min.css" data-skin="default">
+    <link rel="stylesheet" href="~/Content/assets/stylesheets/theme-dark.min.css" data-skin="dark">
+    <link rel="stylesheet" href="~/Content/assets/stylesheets/custom.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/bootstrap-select/css/bootstrap-select.min.css">
+    <link href="~/Content/assets/stylesheets/Loader.css" rel="stylesheet" />
+    <script>
+        var skin = localStorage.getItem('skin') || 'default';
+        var disabledSkinStylesheet = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
+        disabledSkinStylesheet.setAttribute('rel', '');
+        disabledSkinStylesheet.setAttribute('disabled', true);
+        /*document.querySelector('html').classList.add('loading');*/
+    </script>
+</head>
+<body>
+    <div class="app">
+        @if (Request.IsAuthenticated)
+        {
+            <header class="app-header app-header-dark">
+                <div class="top-bar">
+                    <!-- .top-bar-brand -->
+                    <div class="top-bar-brand">
+                        <!-- toggle aside menu -->
+                        <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu" aria-label="toggle aside menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button> <!-- /toggle aside menu -->
+                        <a href="/Home/Index">
+                            IWEShop
+                        </a>
+                    </div><!-- /.top-bar-brand -->
+                    <!-- .top-bar-list -->
+                    <div class="top-bar-list">
+                        <!-- .top-bar-item -->
+                        <div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
+                            <!-- toggle menu -->
+                            <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="toggle menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button> <!-- /toggle menu -->
+                        </div>
+                        <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+
+                            <div class="dropdown d-none d-md-flex">
+                                <button class="btn-account" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="user-avatar user-avatar-md">
+                                        <img src="~/Content/assets/user.jpg" alt="">
+                                    </span>
+                                    <span class="account-summary pr-lg-4 d-none d-lg-block">
+                                        <span class="account-name">@User.Identity.Name</span>
+                                    </span>
+                                </button>
+
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
+                                    <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
+                                    <a class="dropdown-item" href="/Manage/ChangePassword">
+                                        <span class="dropdown-icon fa fa-key"></span> Change Password
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                        }
+                                        <span class="dropdown-icon oi oi-account-logout"></span> Logout
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+        }
+        @if (Request.IsAuthenticated)
+        {
+            <aside class="app-aside app-aside-expand-md app-aside-light">
+               
+                <div class="aside-content">
+                    
+                    <header class="aside-header d-block d-md-none">
+                        <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside">
+                            <span class="user-avatar user-avatar-lg">
+                                <img src="~/Content/assets/user.jpg" alt="">
+                            </span>
+                            <span class="account-icon">
+                                <span class="fa fa-caret-down fa-lg"></span>
+                            </span>
+                            <span class="account-summary">
+                                <span class="account-name">@User.Identity.Name</span>
+                            </span>
+                        </button>
+                      
+                        <div id="dropdown-aside" class="dropdown-aside collapse">
+                            
+                            <div class="pb-3">
+                                <a class="dropdown-item" href="/Manage/ChangePassword">
+                                    <span class="dropdown-icon fa fa-key"></span> Change Password
+                                </a>
+                                <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                    }
+                                    <span class="dropdown-icon oi oi-account-logout"></span> Logout
+                                </a>
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <div class="aside-menu overflow-hidden">
+                      
+                        <nav id="stacked-menu" class="stacked-menu">
+                           
+                            <ul class="menu">
+
+                                <li class="menu-item has-active">
+                                    <a href="/Home/Index" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Dashboard</span></a>
+                                </li>
+
+                                <li class="menu-item has-active">
+                                    <a href="/Product/Category_List" class="menu-link"><span class="menu-icon fas fa-list"></span> <span class="menu-text">Product</span></a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                         <footer class="aside-footer border-top p-2">
+                        <button class="btn btn-light btn-block text-primary" data-toggle="skin"><span class="d-compact-menu-none">Night mode</span> <i class="fas fa-moon ml-1"></i></button>
+                    </footer>
+                </div>
+            </aside>
+        }
+
+
+        <main class="app-main MainDiv">
+            
+            @RenderBody()
+        </main>
+
+    </div>
+    <script src="~/Content/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/assets/vendor/popper.js/umd/popper.min.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/vendor/stacked-menu/js/stacked-menu.min.js"></script>
+    <script src="~/Content/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Content/assets/vendor/flatpickr/flatpickr.min.js"></script>
+    <script src="~/Content/assets/vendor/easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="~/Content/assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/Content/assets/javascript/theme.min.js"></script>
+    <script src="~/Content/assets/javascript/pages/dashboard-demo.js"></script>
+    <script src="~/Content/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/javascript/pages/dataTables.bootstrap.js"></script>
+    <script src="~/Content/assets/javascript/pages/dataTables.bootstrap.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

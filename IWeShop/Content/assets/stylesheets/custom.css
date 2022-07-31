@@ -1,0 +1,129 @@
+.Custom-Link{
+    cursor:pointer;
+}
+.responsive {
+    width: 100%;
+    height: auto;
+}
+.bg-light-red {
+    background-color: #ff000021;
+}
+.bg-light-green {
+    background-color: #d1e5da;
+}
+
+
+.img-size-60 {
+    width: 120px;
+    height: 120px;
+}
+
+
+/* ---------------------------15-05-2020----------- */
+
+.ck-editor__editable {
+    min-height: 400px;
+}
+
+.cke_dialog_body label:not(.form-check-label):not(.custom-file-label) {
+    float: none !important;
+}
+
+#text1 {
+    width: 100%;
+}
+
+#text2 {
+    width: 100%;
+}
+
+#text3 {
+    width: 100%;
+}
+
+.thumb {
+    text-align: center;
+}
+
+.thumbImg {
+    width: 60px;
+    height: 60px;
+}
+
+.large {
+    position: absolute;
+    left: -9999px;
+}
+
+.thumb:hover > .large {
+    z-index: 9999;
+    transition: opacity .5s linear;
+    background-color: aqua;
+    left: 20px;
+    text-align: center;
+}
+
+.large-image {
+    border-radius: 4px;
+    max-width: 500px;
+    max-height: inherit;
+    box-shadow: 1px 1px 3px 3px rgba(127, 127, 127, 0.15);
+}
+
+/*.table-responsive {
+    overflow-x: initial !important;
+}*/
+
+.div-multiple-img .img-size-60 {
+    margin: 7px 7px 0px 0;
+}
+
+.thumb-delete {
+    background-image: url('../img/icon-cross.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.info {
+    font-size: 22px;
+}
+
+.thumb:hover > .large {
+    left: 20%;
+    position: fixed;
+    top: 20%;
+    bottom: 20%;
+    background: transparent;
+}
+
+.layout-fixed .brand-link {
+    width: auto !important;
+}
+
+.nav-pills .nav-link {
+    color: #fff !important;
+}
+
+@media(min-width : 200px) and (max-width : 767px) {
+    .thumb:hover > .large {
+        left: 0px;
+    }
+
+    .large-image {
+        max-width: 100%;
+    }
+}
+
+#dvThumbs {
+    width: 100%;
+    display: flex;
+}
+
+    #dvThumbs .spanthumb {
+        float: left;
+        width: 120px;
+        height: 120px;
+    }

@@ -1,0 +1,116 @@
+﻿@using IWeShop.Models
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="section">
+    <div class="hero-slider">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+                <div class="hero-slide-item swiper-slide">
+                         <div class="hero-slide-bg">
+                        <img src="~/assets/images/slider/slide.jpg" alt="Slider Image" />
+                    </div>
+                                
+
+            </div>
+
+              
+            <div class="swiper-pagination d-md-none"></div>
+             
+            
+            <div class="home-slider-prev swiper-button-prev main-slider-nav d-md-flex d-none"><i class="pe-7s-angle-left"></i></div>
+            <div class="home-slider-next swiper-button-next main-slider-nav d-md-flex d-none"><i class="pe-7s-angle-right"></i></div>
+            
+
+        </div>
+    </div>
+</div>
+</div>*@
+ 
+<div class="section section-padding mt-0">
+    <div class="container">
+
+        <!-- Products Tab Start -->
+        <div class="row">
+            <div class="col">
+                <div class="tab-content position-relative">
+                    <div class="tab-pane fade show active" id="tab-product-all">
+                        <div class="product-carousel">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper mb-n10">
+                                    @{
+                                        int Sno = 0;
+                                        foreach (Product_List_Result p in ViewBag.ProductList)
+                                        {
+                                            if (Sno == 2)
+                                            {
+                                                Sno = 0;
+                                            }
+                                            if (Sno == 0)
+                                            {
+                                                @Html.Raw("<div class='swiper-slide product-wrapper'>")
+                                            }
+                                            <!-- Single Product Start -->
+                                            <div class="product product-border-left mb-10" data-aos="fade-up" data-aos-delay="300">
+                                                <div class="thumb">
+                                                    <a href="single-product.html" class="image">
+                                                        <img class="first-image" src="@Url.Content(p.ImagePath)" alt="Product" />
+                                                    </a>
+                                                    <div class="actions">
+                                                        <a href="#" class="action wishlist"><i class="pe-7s-like"></i></a>
+                                                        <a href="#" class="action quickview" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="pe-7s-search"></i></a>
+                                                        <a href="#" class="action compare"><i class="pe-7s-shuffle"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="content">
+                                                    <h4 class="sub-title"><a href="single-product.html">@p.CategoryName</a></h4>
+                                                    <h5 class="title"><a href="single-product.html">@p.ProductName</a></h5>
+                                                    <span class="price">
+                                                        @if (p.Discount > 0)
+                                                        {
+                                                            <span class="new">$@(p.Price - p.Discount)</span>
+                                                            <span class="old">$@p.Price</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="new">$@p.Price</span>
+                                                        }
+
+                                                    </span>
+                                                    <button class="btn btn-sm btn-outline-dark btn-hover-primary">Add To Cart</button>
+                                                </div>
+                                            </div>
+                                            <!-- Single Product End -->
+                                            Sno = Sno + 1;
+
+                                            if (Sno == 2)
+                                            {
+                                                @Html.Raw("</div>")
+                                            }
+
+                                        }
+                                    }
+                                </div>
+
+                               
+                                <div class="swiper-pagination d-md-none"></div>
+                                <!-- Swiper Pagination End -->
+                                <!-- Next Previous Button Start -->
+                                <div class="swiper-product-button-next swiper-button-next swiper-button-white d-md-flex d-none"><i class="pe-7s-angle-right"></i></div>
+                                <div class="swiper-product-button-prev swiper-button-prev swiper-button-white d-md-flex d-none"><i class="pe-7s-angle-left"></i></div>
+                                <!-- Next Previous Button End -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Products Tab End -->
+    </div>
+</div>
+
+

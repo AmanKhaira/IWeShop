@@ -1,0 +1,63 @@
+﻿@model IEnumerable<IWeShop.Models.Product_Image>
+
+@{
+    Layout = null;
+}
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="mt-3">Upload Image</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" maxlength="150" name="ImagePath" id="ImagePath" readonly value="" />
+                        <small class="text-red">
+                            PNG Size must be 400 (W) x 400 (H)
+                        </small>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" class="btn btn-primary" value="Browse" onclick="selectFileWithCKFinder('ImagePath','imgProduct','Product')" />
+                        
+                    </div>
+                    <div class="col-md-1 thumb">
+                        <img id="imgProduct" class="embed-responsive img-thumbnail" src="~/content/assets/images/image-dummy.jpg">
+                        <button type="button" class="btn btn-primary mt-1" onclick="UploadImage()">Upload</button>
+                        <span class="large">
+                            <img id="imgProductLarge" class="large-image" />
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row m-2">
+    @foreach (var i in Model)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img class="embed-responsive" src="@i.ImagePath" />
+                </div>
+                <span class="text-center">
+                    <a class="Custom-Link" onclick="Product_Image_Delete('@i.ImageID')">
+                       <i class="fa fa-trash text-red"></i>
+                    </a>
+                </span>
+                <hr />
+
+                <span>
+                    <span class="card-title ml-5 float-left">Default: </span>
+                    <label class="switcher-control switcher-control-lg mr-5 float-right">
+                        <input type="checkbox" class="switcher-input" id="Status_@i.ImageID" @(i.IsDefault == true ? "checked" : "") onchange="Product_Mark_IsDefault('@i.ImageID')">
+                        <span class="switcher-indicator"></span>
+                        <span class="switcher-label-on">ON</span>
+                        <span class="switcher-label-off">OFF</span>
+                    </label>
+                </span>
+            </div>
+
+        </div>
+    }
+</div>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b91d726765e84161a3ba1ef11398ba47" Name="Diagram1">
+        <EntityTypeShape EntityType="IWeShopdbModel.AspNetRole" Width="1.5" PointX="8.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.AspNetUserClaim" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.AspNetUserLogin" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.AspNetUserRole" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.AspNetUser" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Order_Detail" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Order_Master" Width="1.75" PointX="5.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Product_Category_Master" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Product_Image" Width="1.5" PointX="8.625" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Product_Master" Width="1.5" PointX="5.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Status_Master" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="IWeShopdbModel.FK_Order_Detail_Order_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="IWeShopdbModel.FK_Order_Master_Status_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="IWeShopdbModel.FK_Product_Master_Product_Category_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="IWeShopdbModel.FK_Product_Image_Product_Master" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IWeShopdbModel.Customer" Width="1.5" PointX="1.625" PointY="1.375" />
+        <AssociationConnector Association="IWeShopdbModel.FK_Order_Master_Customer" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

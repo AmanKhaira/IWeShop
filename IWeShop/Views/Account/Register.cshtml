@@ -1,0 +1,94 @@
+﻿@model IWeShop.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<!-- Breadcrumb Section Start -->
+<div class="section">
+
+    <!-- Breadcrumb Area Start -->
+    <div class="breadcrumb-area bg-light">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <h1 class="title">Login | Register</h1>
+                <ul>
+                    <li>
+                        <a href="/Home/Index">Home </a>
+                    </li>
+                    <li class="active"> Login | Register</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End -->
+
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Login | Register Section Start -->
+<div class="section section-margin">
+    <div class="container">
+        <!-- Register Wrapper Start -->
+        <div class="register-wrapper">
+
+            <!-- Login Title & Content Start -->
+            <div class="section-content text-center mb-5">
+                <h2 class="title mb-2">Create Account</h2>
+                <p class="desc-content">Please Register using account detail bellow.</p>
+            </div>
+            <!-- Login Title & Content End -->
+            <!-- Form Action Start -->
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <!-- Input First Name Start -->
+                <div class="single-input-item mb-3">
+                    <input type="text" placeholder="First Name" name="FirstName" required maxlength="50">
+                </div>
+                <!-- Input First Name End -->
+                <!-- Input Last Name Start -->
+                <div class="single-input-item mb-3">
+                    <input type="text" placeholder="Last Name" name="LastName" required maxlength="50">
+                </div>
+                <!-- Input Last Name End -->
+                <!-- Input Email Or Username Start -->
+                <div class="single-input-item mb-3">
+                    <input type="email" placeholder="Email" name="Email" required maxlength="50">
+                </div>
+
+                <div class="single-input-item mb-3">
+                    <input type="text" placeholder="Mobile" name="Mobile" required maxlength="10">
+                </div>
+                <!-- Input Email Or Username End -->
+                <!-- Input Password Start -->
+                <div class="single-input-item mb-3">
+                    <input type="password" placeholder="Enter your Password" required name="Password">
+                </div>
+                <div class="single-input-item mb-3">
+                    <input type="password" placeholder="Confirm your Password" required name="ConfirmPassword">
+                </div>
+                <!-- Input Password End -->
+
+                <!-- Checkbox & Subscribe Label End -->
+                <!-- Register Button Start -->
+                <div class="single-input-item mb-3">
+                    <button type="submit" class="btn btn btn-dark btn-hover-primary rounded-0">Register</button>
+                </div>
+                <!-- Register Button End -->
+
+            }
+            <!-- Form Action End -->
+
+        </div>
+        <!-- Register Wrapper End -->
+    </div>
+</div>
+<!-- Login | Register Section End -->
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

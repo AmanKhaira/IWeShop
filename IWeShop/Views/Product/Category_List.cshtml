@@ -1,0 +1,85 @@
+﻿@model IEnumerable<IWeShop.Models.Product_Category_Master>
+
+@{
+    ViewBag.Title = "Product Categories";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="wrapper">
+    <!-- .page -->
+    <div class="page">
+        <!-- .page-inner -->
+        <div class="page-inner">
+
+            <div class="page-section">
+                <!-- .card -->
+                <div class="card card-fluid">
+
+                    <div class="card-body">
+                        <header class="page-title-bar">
+                            <!-- title and toolbar -->
+                            <div class="d-md-flex align-items-md-start">
+                                <strong class="mr-sm-auto"> <i class="fa fa-list-alt"></i> Product Categories</strong>
+
+                                <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '/Product/Category_Add'"><i class="oi oi-plus"></i> <span class="ml-1">Add New</span></button>
+
+                            </div>
+                        </header>
+                        <hr />
+                        <div class="row">
+                            @foreach (var i in Model)
+                            {
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <a href="@Url.Action("Product_List","Product",new {id=i.CategoryID, Category=i.CategoryName})">
+                                                <img class="embed-responsive" src="~/Content/assets/images/image-dummy.jpg" />
+                                            </a>
+
+                                        </div>
+                                        <span class="text-center">
+                                            <strong class="m-1">
+                                                @i.CategoryName
+                                            <a href="/Product/Category_Edit/@i.CategoryID">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        </strong>
+                                    </span>
+                                </div>
+
+                            </div>
+                        }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        function EnableDisable(id) {
+            var status = $("#Status_" + id).is(':checked');
+
+            if (!confirm('Are you sure you want to update?')) {
+                $("#Status_" + id).prop('checked', (status == true ? false : true));
+                return false;
+            }
+            else {
+                $.ajax({
+                    url: '/Product/Product_Item_MarkAs',
+                    type: "GET",
+                    dataType: "JSON",
+                    data: { ItemType: 1, ItemID: id, MarkAs: status },
+                    success: function (result) {
+
+                    }
+                });
+            }
+        }
+    </script>
+}
